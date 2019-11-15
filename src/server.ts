@@ -49,9 +49,7 @@ export function StartDielDbServer(configs: DbConfig[]) {
       if (dbs) {
         dbs.forEach((dbCon, dbName) => {
           if (dbCon.cleanUpQueries) {
-            console.log("?????????what is this");
             RunToDb(dbCon, dbCon.cleanUpQueries);
-            console.log("!!!!!!!!!!!!what is this");
           } else {
             LogError(`Cleanup queries not defined for ${dbName}`);
           }

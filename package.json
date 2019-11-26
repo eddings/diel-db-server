@@ -13,7 +13,10 @@
     "testServer": "tsc -b tests/ && node build/tests/testServer.js",
     "test": "tsc -b tests/ && node build/tests/index.js",
     "debug": "tsc -b tests/ && node --inspect-brk -r ts-node/register tests/index.ts",
-    "timeseries": "tsc -b tests/ && node build/tests/testTimeseries.js"
+    "timeseries": "tsc -b tests/ && node build/tests/testTimeseriesSqlite.js",
+    "timeseriesSqlite": "tsc -b tests/ && node build/tests/testTimeseriesSqlite.js",
+    "timeseriesPostgres": "tsc -b tests/ && node build/tests/testTimeseriesPostgres.js",
+    "timeseriesAWS": "tsc -b tests/ && node build/tests/testTimeseriesAWS.js"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as http from "http";
 import * as WebSocket from "ws";
+import * as minimist from "minimist";
 import { LogWarning, LogInfo, LogError, TraceEvents } from "./messages";
 import { DbNameType, DbCon, SocketIdType, DbConfig, DbDriver } from "./types";
 import { CloseDb, OpenDb, RunToDb, QueryFromDb } from "./helper";
@@ -207,7 +208,8 @@ export function StartDielDbServer(configs: DbConfig[]) {
   });
 
   // start our server
-  server.listen(process.env.PORT || 8999, () => {
-      console.log(`Server started on port ${(server.address() as WebSocket.AddressInfo).port} :)`);
+  const serverPort = (process.argv[3] && parseInt(process.argv[3])) || 8999;
+  server.listen(process.env.PORT || serverPort, () => {
+      console.log(`${serverPort}\nServer started on port ${(server.address() as WebSocket.AddressInfo).port} :)`);
   });
 }

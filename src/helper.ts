@@ -1,7 +1,7 @@
 import * as sqlite from "better-sqlite3";
 import { Client, ClientConfig, QueryConfig, QueryArrayConfig, QueryArrayResult, ConnectionConfig } from "pg";
 
-import { DbCon, PostgresDbConfig, DbConfig, DbNameType, StmtType, SQLiteCon, PostgresCon, DbDriver } from "./types";
+import { DbCon, PostgresDbConfig, DbConfig, DbNameType, StmtType, SQLiteCon, PostgresCon, DbDriver, QueryResult } from "./types";
 import { LogError, LogWarning, TraceEvents } from "./messages";
 import { randString, GetHashCode } from "./util";
 import { SqliteDbConfig } from ".";
@@ -101,11 +101,16 @@ export async function RunToDb(dbCon: DbCon, sql: string): Promise<boolean> {
   }
 }
 
+export async function getSQLQueryFromDbResult(data: QueryResult): string {
+  
+}
+
 // assume that this is fixed
 // so make prepared statements
 // FIXME: maybe create shorter hashses
 // and prepared statements are not parametrized
-export async function QueryFromDb(dbCon: DbCon, sql: string): Promise<any[] | null> {
+
+export async function QueryFromDb(dbCon: DbCon, sql: string): Promise<QueryResult | null> {
   TraceEvents(`queryfromdb invoked to get ${sql}\n`);
   switch (dbCon.driver) {
     case DbDriver.SQLite: {
